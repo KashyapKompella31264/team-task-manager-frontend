@@ -95,7 +95,7 @@ function App() {
     }}>
       <b>Admin Credentials(For Evaluation Prupose)</b><br/>
       Email: admin@test.com<br/>
-      Password: admin123
+      Password: 123456
     </p>
   </div>
 )}
