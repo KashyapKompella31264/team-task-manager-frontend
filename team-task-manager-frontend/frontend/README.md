@@ -1,16 +1,209 @@
-# React + Vite
+# 🚀 Team Task Manager (Full Stack)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application where teams can manage projects, assign tasks, and track progress with role-based access control.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🔗 Live Demo
 
-## React Compiler
+- 🌐 Frontend: https://your-frontend-url.up.railway.app
+- ⚙️ Backend API: https://your-backend-url.up.railway.app
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🎯 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🔐 Authentication
+
+- User Signup & Login
+- JWT-based authentication
+- Role-based access (Admin / Member)
+
+---
+
+### 📁 Project Management
+
+- Admin can create projects
+- Projects contain multiple tasks
+- Users can view assigned projects
+
+---
+
+### ✅ Task Management
+
+- Create tasks within projects
+- Assign tasks to users
+- Track task status:
+  - `Todo`
+  - `In Progress`
+  - `Done`
+
+---
+
+### 👤 User Functionality
+
+- View assigned projects
+- View only their tasks
+- Mark tasks as **Done**
+
+---
+
+### 📊 Dashboard
+
+- View tasks by:
+  - Todo
+  - Completed
+  - Overdue
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React (Vite)
+- Axios
+- CSS (basic styling)
+
+### Backend
+
+- Node.js
+- Express.js
+- MongoDB (Mongoose)
+
+### Deployment
+
+- Railway (Backend + Frontend)
+
+---
+
+## 📂 Project Structure
+
+```bash
+team-task-manager/
+│
+├── backend/
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   ├── App.jsx
+│   ├── package.json
+│   └── vite.config.js
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/team-task-manager.git
+cd team-task-manager
+```
+
+---
+
+### 2️⃣ Backend Setup
+
+```bash
+cd backend
+npm install
+```
+
+Create a `.env` file:
+
+```env
+MONGO_URI=your_mongodb_connection
+JWT_SECRET=your_secret_key
+PORT=5000
+```
+
+Run backend:
+
+```bash
+node server.js
+```
+
+---
+
+### 3️⃣ Frontend Setup
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🔑 API Endpoints
+
+### Auth
+
+- `POST /signup`
+- `POST /login`
+
+### Projects
+
+- `POST /project`
+- `GET /projects`
+
+### Tasks
+
+- `POST /task`
+- `GET /tasks`
+- `PUT /task/:id`
+
+---
+
+## 🔐 Roles
+
+| Role   | Permissions                   |
+| ------ | ----------------------------- |
+| Admin  | Create projects, assign tasks |
+| Member | View tasks, mark as done      |
+
+---
+
+## 🎥 Demo Video
+
+👉 (Add your 2–5 min demo video link here)
+
+---
+
+## 🧠 Key Learnings
+
+- Implemented full-stack architecture
+- Handled JWT authentication
+- Designed role-based access control (RBAC)
+- Managed MongoDB relationships
+- Deployed full-stack app on Railway
+
+---
+
+## 📌 Future Improvements
+
+- Better UI/UX design
+- Notifications for task updates
+- File attachments for tasks
+- Real-time updates (WebSockets)
+
+---
+
+## 👤 Author
+
+Kashyap Kompella
+GitHub: https://github.com/KashyapKompella31264
+
+---
+
+## ⭐ Acknowledgement
+
+This project was built as part of a full-stack assignment to demonstrate practical skills in modern web development.
+
+---
