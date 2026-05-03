@@ -26,20 +26,34 @@ function App() {
 
   // ================= LOGIN =================
   const LoginPage = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [isSignup, setIsSignup] = useState(false);
 
-    const login = async () => {
-      try {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleAuth = async () => {
+    try {
+      if (isSignup) {
+        await axios.post(`${API}/signup`, {
+          email,
+          password,
+          role: "member"
+        });
+        alert("Signup successful. Please login.");
+        setIsSignup(false);
+      } else {
         const res = await axios.post(`${API}/login`, { email, password });
+
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("role", res.data.role);
+
         setToken(res.data.token);
-        localStorage.setItem("role", res.data.role); // 🔥 ADD THIS
         setPage(res.data.role === "admin" ? "dashboard" : "user");
-      } catch {
-        alert("Login failed");
       }
-    };
+    } catch (err) {
+      alert(err.response?.data?.message || "Error");
+    }
+  };
 
     return (
       <div style={{
@@ -58,11 +72,33 @@ function App() {
           width: "100%",
           maxWidth: "400px"
         }}>
+          
           <div style={{ textAlign: "center", marginBottom: "32px" }}>
             <h2 style={{ margin: "0 0 8px", color: "#1e293b", fontSize: "24px" }}>Welcome Back</h2>
             <p style={{ color: "#64748b", fontSize: "14px", margin: 0 }}>Log in to manage your projects</p>
           </div>
 
+          {!isSignup && (
+  <div style={{
+    marginTop: "14px",
+    padding: "10px",
+    borderRadius: "6px",
+    backgroundColor: "#fff7ed",
+    border: "1px solid #fdba74",
+    textAlign: "center"
+  }}>
+    <p style={{
+      margin: 0,
+      fontSize: "13px",
+      color: "#9a3412",
+      fontWeight: "500"
+    }}>
+      <b>Admin Credentials(For Evaluation Prupose)</b><br/>
+      Email: admin@test.com<br/>
+      Password: admin123
+    </p>
+  </div>
+)}
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             <div>
               <label style={{ display: "block", fontSize: "13px", fontWeight: "500", color: "#475569", marginBottom: "6px" }}>Email Address</label>
@@ -101,7 +137,8 @@ function App() {
             </div>
 
             <button 
-              onClick={login}
+              onClick={handleAuth}
+              
               style={{
                 width: "100%",
                 backgroundColor: "#4f46e5",
@@ -116,8 +153,24 @@ function App() {
                 transition: "background-color 0.2s"
               }}
             >
-              Sign In
+              
+              {isSignup ? "Signup" : "Sign In"}
             </button>
+            <p
+    onClick={() => setIsSignup(!isSignup)}
+    style={{
+      marginTop: "10px",
+      textAlign: "center",
+      cursor: "pointer",
+      color: "#4f46e5",
+      fontSize: "14px"
+    }}
+  >
+    {isSignup
+      ? "Already have an account? Login"
+      : "Don't have an account? Signup"}
+  </p>
+  
           </div>
         </div>
       </div>
